@@ -110,15 +110,13 @@ export async function injectApi(page: Page) {
   });
 
   await page.addScriptTag({
-    path: require.resolve(path.join(__dirname, '../lib/wapi', 'wapi.js')),
+    path: path.join(process.cwd(), 'lib', 'wapi', 'wapi.js'),
   });
 
   await page.addScriptTag({
-    path: require.resolve(
-      path.join(__dirname, '../lib/middleware', 'middleware.js')
-    ),
+    path: path.join(process.cwd(), 'lib', 'middleware', 'middleware.js'),
   });
-
+  
   // Make sure WAPI is initialized
   await page.waitForFunction(() => {
     // @ts-ignore
